@@ -23,6 +23,6 @@ import 'storybook-addon-usage/register';
 Add those lines to your storybook config file
 
 ```js
-import {Usage} from "../src"
+import {Usage} from 'storybook-addon-usage'
 storybook.addDecorator(Usage);
 ```
