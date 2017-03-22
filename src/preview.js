@@ -1,45 +1,64 @@
-import addons from "@kadira/storybook-addons";
-import {EVENT_ID} from "./";
-import _ from "lodash";
+import React from 'react';
+import addons from '@kadira/storybook-addons';
+import {EVENT_ID} from './';
+import _ from 'lodash/fp';
 
 export function Usage(fn) {
   let story = fn();
-  let first = `<${story.type.name} `;
-  _.toPairs(story.props).forEach((p) => {
-    let value;
-    if (typeof p[1] === 'function') {
-      value = p[1].name ? `{${p[1].name}}` : '{anonymous}';
-    } else if (typeof p[1] === 'string') {
-      value = `${JSON.stringify(p[1])}`;
-    }
-    else if (_.isObject(p[1]) && !_.isArray(p[1])) {
-      value = `{${objToString(p[1])}}`;
-    }
-    else {
-      value = `{${JSON.stringify(p[1])}}`;
-    }
-    first += ` ${p[0]}=${value}\n`;
-  });
-  first += " />";
+  const storybook = getComponentRepresentation(story);
+
   const channel = addons.getChannel();
-  channel.emit(EVENT_ID, {storybook: first});
+  channel.emit(EVENT_ID, {storybook});
   return fn();
 }
 
-function objToString (obj) {
+const getSpaces = depth => _.repeat(depth * 4, '\u00a0');
 
-  var str = '{';
-  for(let p in obj){
-    if (obj.hasOwnProperty(p)) {
-      let value;
-      if(_.isObject(obj[p]) && !_.isArray(obj[p])) {
-        value = objToString(obj[p]);
-      }else{
-        value = JSON.stringify(obj[p]);
-      }
-      str += p + ': ' + value;
-    }
+const getArrayOfAllNonDefaultProps = (props, defaultProps) => _.toPairs(props).filter(
+  ([name, value]) => !defaultProps || defaultProps[name] !== value
+);
+
+const getFuncName = value => value.name || 'anonymous';
+const isObject = (value) => _.isObject(value) && !_.isArray(value);
+
+const renderProp = _.cond([
+  [_.isFunction, getFuncName],
+  [isObject, objToString],
+  [_.stubTrue, JSON.stringify]
+]);
+
+function objToString(obj) {
+  const representation =
+    _.toPairs(obj)
+      .map(([key, value]) => `${key}: ${isObject(value) ? objToString(value) : JSON.stringify(value)}`)
+      .join(', ');
+
+  return `{${representation}}`;
+}
+
+function getComponentRepresentation(story) {
+  const name = story.type.name || story.type.displayName;
+  const props = getArrayOfAllNonDefaultProps(story.props, story.type.defaultProps);
+
+  if (props.length === 0) {
+    return `<${name}/>\n`;
   }
-  str += '}';
-  return str;
+
+  const propsWithoutChildren = props.filter(([name, value]) => name !== 'children');
+  const propsRepresentation = propsWithoutChildren.map(
+    ([name, value]) => getSpaces(1) + `${name}={${renderProp(value)}}\n`
+  ).join('');
+
+  const childRepresentation = story.props.children && React.Children.map(story.props.children,
+      child => _.isObject(child)
+        ? getComponentRepresentation(child).split('\n').map(x => x && getSpaces(1) + x).join('\n')
+        : getSpaces(1) + child + '\n'
+    ).join('');
+
+  return [
+    `<${name}`,
+    propsRepresentation && '\n' + propsRepresentation,
+    !childRepresentation && '/>\n',
+    childRepresentation && '>\n' + childRepresentation + `</${name}>\n`
+  ].filter(_.identity).join('');
 }

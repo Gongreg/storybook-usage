@@ -5,11 +5,11 @@ export default class Usage extends Component {
 
   render() {
     let {storySource} = this.props;
+    const lines = storySource.split('\n');
     return (<div style={style.wrapper}>
-      {storySource.split('\n').map(function (item, idx) {
-        const tab = idx > 0 ? style.tab : null;
+      {lines.map(function (item, idx) {
         return (
-          <span style={tab} key={idx}>
+          <span key={idx}>
             {item} <br/>
           </span>
         )

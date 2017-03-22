@@ -13,8 +13,4 @@ export default {
         padding: '10px',
         margin: '10px'
     },
-    tab: {
-        marginLeft: '55px'
-    }
-
 };
