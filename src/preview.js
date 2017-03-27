@@ -37,7 +37,7 @@ function objToString(obj) {
 }
 
 function getComponentRepresentation(story) {
-  const name = story.type.name || story.type.displayName;
+  const name = story.type.displayName || story.type.name;
   const props = getArrayOfAllNonDefaultProps(story.props, story.type.defaultProps);
 
   if (props.length === 0) {
