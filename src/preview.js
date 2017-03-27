@@ -21,7 +21,7 @@ const getArrayOfAllNonDefaultProps = (props, defaultProps) => _.toPairs(props).f
 const getFuncName = value => value.name || 'anonymous';
 const isObject = (value) => _.isObject(value) && !_.isArray(value);
 
-const renderProp = _.cond([
+const renderValue = _.cond([
   [_.isFunction, getFuncName],
   [isObject, objToString],
   [_.stubTrue, JSON.stringify]
@@ -30,7 +30,7 @@ const renderProp = _.cond([
 function objToString(obj) {
   const representation =
     _.toPairs(obj)
-      .map(([key, value]) => `${key}: ${isObject(value) ? objToString(value) : JSON.stringify(value)}`)
+      .map(([key, value]) => `${key}: ${isObject(value) ? objToString(value) : renderValue(value)}`)
       .join(', ');
 
   return `{${representation}}`;
@@ -46,7 +46,7 @@ function getComponentRepresentation(story) {
 
   const propsWithoutChildren = props.filter(([name, value]) => name !== 'children');
   const propsRepresentation = propsWithoutChildren.map(
-    ([name, value]) => getSpaces(1) + `${name}={${renderProp(value)}}\n`
+    ([name, value]) => getSpaces(1) + `${name}={${renderValue(value)}}\n`
   ).join('');
 
   const childRepresentation = story.props.children && React.Children.map(story.props.children,
