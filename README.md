@@ -1,7 +1,8 @@
-# Storybook Usage Addon
+# Storybook Usage
 
-This addon let you display the story's declaration inside
-a panel.
+This addon let you display the story's declaration inside a panel. This project extends initial 
+[Storybook usage addon project](https://github.com/mthuret/storybook-addon-usage) created by mthuret.
+But since it wasn't maintained and PR were ignored I created a new project for it.
 
 ![](docs/screenshot.png)
 
@@ -10,19 +11,19 @@ a panel.
 First, install the addon
 
 ```shell
-npm install -D storybook-addon-usage
+npm install storybook-usage
 ```
 
 Add this line to your `addons.js` file (create this file inside your storybook config directory if needed).
 
 ```js
-import 'storybook-addon-usage/register';
+import 'storybook-usage/register';
 ```
 
 
 Add those lines to your storybook config file
 
 ```js
-import {Usage} from 'storybook-addon-usage'
+import {Usage} from 'storybook-usage'
 storybook.addDecorator(Usage);
 ```

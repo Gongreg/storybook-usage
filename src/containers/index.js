@@ -1,14 +1,14 @@
-import React, {Component} from "react";
-import UsageComponent from "../../components/Usage/";
-import {EVENT_ID} from "../../";
+import React, {Component} from 'react';
+import UsageComponent from '../components';
+import {EVENT_ID} from '../';
 
 export default class Usage extends Component {
   constructor(props, ...args) {
     super(props, ...args);
-    this.state = { storybook: ""};
+    this.state = { storybook: ''};
     this._listener = d => {
-      this.setState({storybook: d.storybook})};
-
+      this.setState({storybook: d.storybook})
+    };
   }
 
   componentDidMount() {
@@ -20,7 +20,7 @@ export default class Usage extends Component {
   }
 
   render() {
-    const storybook = this.state.storybook;
+    const {storybook} = this.state;
     return <UsageComponent storySource={storybook}/>;
   }
 }

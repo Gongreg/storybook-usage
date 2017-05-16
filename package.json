@@ -1,28 +1,30 @@
 {
-  "name": "storybook-addon-usage",
-  "version": "1.0.0",
-  "description": "Display how to use a component inside a react-storybook panel",
+  "name": "storybook-usage",
+  "version": "2.0.0",
+  "description": "Displays how component is rendered in storybook",
   "main": "dist/index.js",
   "scripts": {
-    "deploy-storybook": "storybook-to-ghpages",
     "prepublish": "node .scripts/npm-prepublish.js",
     "storybook": "start-storybook -p 9001"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mthuret/storybook-addon-usage.git"
+    "url": "git+https://github.com/gongreg/storybook-usage.git"
   },
   "keywords": [
     "storybook",
     "usage",
     "react",
-    "component"
+    "react-native",
+    "component",
+    "addon",
+    "declaration"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mthuret/storybook-addon-usage/issues"
+    "url": "https://github.com/gongreg/storybook-usage/issues"
   },
-  "homepage": "https://github.com/mthuret/storybook-addon-usage#readme",
+  "homepage": "https://github.com/gongreg/storybook-usage#readme",
   "devDependencies": {
     "@kadira/storybook": "^2.6.1",
     "@kadira/storybook-addons": "^1.3.1",
