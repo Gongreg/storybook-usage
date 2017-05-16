@@ -6,6 +6,11 @@ But since it wasn't maintained and PR were ignored I created a new project for i
 
 ![](docs/screenshot.png)
 
+## Should I use it?
+
+There is another great addon [Info addon](https://github.com/storybooks/storybook/tree/master/packages/addon-info).
+It has a lot more functionality, but it doesn't use sidebar location. That makes it difficult to use with react-native-storybook. If you manage to set it up, try to use it instead of this one, since this project is not going to get any new functionality.
+
 ## Getting Started
 
 First, install the addon
