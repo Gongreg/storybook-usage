@@ -1,12 +1,12 @@
 import React from "react";
-import {storiesOf, action} from "@kadira/storybook";
+import {storiesOf, action} from "@storybook/react";
 
 const stories = storiesOf('Button', module);
 
 const Button = ({text, onClick, names}) => {
   return <div>{names.map(n => {
     return (
-      <button onClick={onClick}>
+      <button key={n} onClick={onClick}>
         {`${text} ${n}`}
       </button>
     )
