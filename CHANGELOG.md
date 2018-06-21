@@ -1,6 +1,10 @@
 ## Changelog
 
-### v2.0.0
+### v4.0.0
+* Updated dependencies
+* Added functionality to display addon in react native
+
+### v3.0.0
 * Updated storybook dependencies to v3.0.0-alpha.
 
 ### v2.0.0
