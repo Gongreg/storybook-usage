@@ -17,7 +17,7 @@ export function register() {
     // will be executed to render the tab content.
     addons.addPanel(PANEL_ID, {
       title: 'Usage',
-      render: () => <Usage api={api} channel={channel} />
+      render: (active) => <Usage api={api} channel={channel} />
     });
   });
 }
