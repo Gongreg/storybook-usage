@@ -5,7 +5,7 @@ export default ({storySource}) => (
   <View style={style.wrapper}>
     {storySource.split('\n').map((item, idx) => (
       <Text style={style.text} key={idx}>
-        {item} <br/>
+        {item}
       </Text>
     ))}
   </View>
