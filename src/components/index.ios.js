@@ -1,2 +1,2 @@
-import ReactNativeRender from './react-native-render';
+import ReactNativeRender from './index-mobile';
 export default ReactNativeRender;
