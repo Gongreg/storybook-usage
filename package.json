@@ -1,6 +1,6 @@
 {
   "name": "storybook-usage",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "Displays how component is rendered in storybook",
   "main": "dist/index.js",
   "scripts": {
