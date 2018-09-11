@@ -2,6 +2,7 @@ import React from 'react';
 import addons from '@storybook/addons';
 import {EVENT_ID} from './';
 import _ from 'lodash/fp';
+import { inspect } from 'util';
 
 export function Usage(fn) {
   let story = fn();
@@ -24,7 +25,7 @@ const isObject = (value) => _.isObject(value) && !_.isArray(value);
 const renderValue = _.cond([
   [_.isFunction, getFuncName],
   [isObject, objToString],
-  [_.stubTrue, JSON.stringify]
+  [_.stubTrue, inspect]
 ]);
 
 function objToString(obj) {
