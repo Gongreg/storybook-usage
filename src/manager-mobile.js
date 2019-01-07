@@ -1,7 +1,7 @@
 import React from 'react';
 import addons from '@storybook/addons';
 import Usage from './containers';
-import { ADDON_ID, PANEL_ID } from './';
+import { ADDON_ID, PANEL_ID } from './consts';
 
 // register function will call addons.register to register an addon loader
 // This is executed when importing `@kadira/storybook-addon-hello/register`

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import UsageComponent from '../components';
-import {EVENT_ID} from '../';
+import {EVENT_ID} from '../consts';
 
 export default class Usage extends Component {
   constructor(props, ...args) {

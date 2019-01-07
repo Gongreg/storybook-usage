@@ -1,6 +1,6 @@
 import React from 'react';
 import addons from '@storybook/addons';
-import {EVENT_ID} from './';
+import {EVENT_ID} from './consts';
 import _ from 'lodash/fp';
 import { inspect } from 'util';
 
