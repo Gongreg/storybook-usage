@@ -1,6 +1,6 @@
 {
   "name": "storybook-usage",
-  "version": "4.0.8",
+  "version": "4.0.9",
   "description": "Displays how component is rendered in storybook",
   "main": "dist/index.js",
   "scripts": {
@@ -35,7 +35,9 @@
     "react": "^16.0.0",
     "react-addons-test-utils": "^0.14.7 || ^15.0.0",
     "react-dom": "^15.3.0",
-    "shelljs": "^0.7.3",
+    "shelljs": "^0.7.3"
+  },
+  "dependencies": {
     "util": "^0.12.0"
   },
   "peerDependencies": {
