@@ -47,7 +47,7 @@ function getComponentRepresentation(story) {
 
   const propsWithoutChildren = props.filter(([name, value]) => name !== 'children');
   const propsRepresentation = propsWithoutChildren.map(
-    ([name, value]) => getSpaces(1) + `${name}={${renderValue(value)}}\n`
+    ([name, value]) => getSpaces(1) + (value === true ? name : `${name}={${renderValue(value)}}`) + '\n'
   ).join('');
 
   const childRepresentation = story.props.children && React.Children.map(story.props.children,
