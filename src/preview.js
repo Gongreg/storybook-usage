@@ -55,6 +55,13 @@ function getComponentRepresentation(story) {
         ? getComponentRepresentation(child).split('\n').map(x => x && getSpaces(1) + x).join('\n')
         : getSpaces(1) + child + '\n'
     ).join('');
+  
+  // if storybook-usage is present in props, then we don't want to render the component since it's the storybook-usage component
+  if (propsRepresentation.includes('storybook-usage')) {
+    return [
+      childRepresentation
+    ].filter(_.identity).join('');
+  }
 
   return [
     `<${name}`,
